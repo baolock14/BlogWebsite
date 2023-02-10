@@ -1,0 +1,98 @@
+﻿@model BlogWebDemo.Models.Category
+
+@{
+    ViewData["Title"] = "TẠO MỚI DANH MỤC";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Categories" asp-action="Index">QUẢN LÝ DANH MỤC</a></li>
+        <li class="breadcrumb-item active" aria-current="page">TẠO MỚI</li>
+    </ol>
+    <h6 class="slim-pagetitle">TẠO MỚI DANH MỤC</h6>
+</div><!-- slim-pageheader -->
+
+<div class="section-wrapper">
+    <div class="form-layout">
+        <form asp-area="Admin" asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="row mg-b-25">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Category Name: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="CatName">
+                    </div>
+                </div> 
+                <div class="col-lg-4">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Category Parent: <span class="tx-danger">*</span></label>
+                        <select class="form-control select2" @*asp-for="Parents"*@ asp-items="@ViewBag.DanhMucGoc" required>
+                            <option value="0" selected>DANH MỤC GỐC</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Ordering: <span class="tx-danger">*</span></label>
+                        <input class="form-control" value="0" type="number" asp-for="Ordering">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="form-control-label">Description: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Description">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="form-group mg-b-10-force">
+                        <label for="form-control-label">Thumbail: <span class="tx-danger">*</span></label>
+                        <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mg-b-10-force">
+                        <label for="form-control-label">Cover: <span class="tx-danger">*</span></label>
+                        <input name="fCover" type="file" class="form-control-file" asp-for="Cover" />
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="form-group mg-b-10-force">
+                        <label for="form-control-label">Icon: <span class="tx-danger">*</span></label>
+                        <input name="fIcon" type="file" class="form-control-file" asp-for="Icon" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group mg-b-10-force">
+                        <label for="form-control-label">Status</label><br>
+                        <input type="checkbox" asp-for="Published"/><span> Active</span>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="form-control-label">Title: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Title">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="form-control-label">MetaKey: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MetaKey">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="form-control-label">MetaDesc: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MetaDesc">
+                    </div>
+
+                    <div class="form-layout-footer">
+                        <button class="btn btn-primary bd-0">Submit</button>
+                        <button asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-secondary bd-0">Cancel</button>
+                    </div><!-- form-layout-footer -->
+                </div>
+            </div>
+        </form>
+    </div><!-- form-layout -->
+</div><!-- section-wrapper -->

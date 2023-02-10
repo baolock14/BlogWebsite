@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BlogWebDemo.Models.Account>
+
+@{
+    ViewData["Title"] = "QUẢN LÝ TÀI KHOẢN";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Accounts" asp-action="Index">QUẢN LÝ TÀI KHOẢN</a></li>
+    </ol>
+    <h6 class="slim-pagetitle">QUẢN LÝ TÀI KHOẢN</h6>
+</div><!-- slim-pageheader -->
+
+<div class="section-wrapper">
+    <div style="text-align:left !important" class="form-layout-footer">
+        <a asp-area="Admin" asp-controller="Accounts" asp-action="Create" class=" btn btn-primary mg-b-10"><i class="fa fa-plus-circle mg-r-10"></i>Create</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table mg-b-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                <tr>
+                    <th scope="row">@item.RoleId</th>
+                    <td>@item.FullName</td>
+                    <td>
+                        @if (item.Active == true)
+                        {
+                            <span class="badge badge-primary">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-primary">Block</span>
+                        }
+                    </td>
+                    <td>@item.Role.RoleName</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="Accounts" asp-action="Details" asp-route-id="@item.AccountId" class=" btn btn-success">View</a>
+                        <a asp-area="Admin" asp-controller="Accounts" asp-action="Edit" asp-route-id="@item.AccountId" class=" btn btn-primary">Edit</a>
+                        <a asp-area="Admin" asp-controller="Accounts" asp-action="Delete" asp-route-id="@item.AccountId" class=" btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div><!-- table-responsive -->
+</div><!-- section-wrapper -->
